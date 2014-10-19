@@ -9,6 +9,8 @@ import scrapy
 
 
 class ScrapyCraigslistItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    title = Field()
+    description = Field()
+    price = Field()
+    address = Field()
+    url = Field()

@@ -3,6 +3,7 @@ __author__ = 'htm'
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.contrib.spiders import Rule, CrawlSpider
 from scrapy.selector import HtmlXPathSelector
+from scrapy_craigslist.items import ScrapyCraigslistItem
 
 class MySpider(CrawlSpider):
     name = "craigslist"

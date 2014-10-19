@@ -13,5 +13,7 @@ BOT_NAME = 'scrapy_craigslist'
 SPIDER_MODULES = ['scrapy_craigslist.spiders']
 NEWSPIDER_MODULE = 'scrapy_craigslist.spiders'
 
+# USER_AGENT =
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'scrapy_craigslist (+http://www.yourdomain.com)'
