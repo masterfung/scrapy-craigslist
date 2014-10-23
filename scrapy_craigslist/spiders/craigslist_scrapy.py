@@ -6,16 +6,22 @@ from scrapy.selector import HtmlXPathSelector
 from scrapy_craigslist.items import ScrapyCraigslistItem
 
 class MySpider(CrawlSpider):
+    """
+
+    """
     name = "craigslist"
     allowed_domains = ["sfbay.craigslist.org"]
     start_urls = ["http://sfbay.craigslist.org/search/apa?"]
 
     rules = (
-        Rule(SgmlLinkExtractor(allow=("search/apa?s=d00&")), callback="parse_items_2", follow= True),
         Rule(SgmlLinkExtractor(allow=(r'sfbay.craigslist.org/search/')), callback="parse_items_1", follow= True),
+        Rule(SgmlLinkExtractor(allow=("search/apa?s=d00&")), callback="parse_items_2", follow= True),
         )
 
     def parse_items_1(self, response):
+        """
+
+        """
         items = []
         hxs = HtmlXPathSelector(response)
         # print response.url
@@ -24,7 +30,7 @@ class MySpider(CrawlSpider):
             item = ScrapyCraigslistItem()
             item ["title"] = content.select("//p/span/span/a/text()").extract()[0]
             item ["ad_url"] = content.select("//p/a/@href").extract()[0]
-            # item ["img_url"] = content.select("(//p/a[@class='i'])").extract()[0] BAAAD
+            # item ["img_url"] = content.select("(//p/a[@class='i'])").extract()[0] # BAAAD
             item ["post_date"] = content.select("//p/span/span/time/text()").extract()[0]
             item ["post_date_specific"] = content.select("//p/span/span/time/@datetime").extract()[0]
             item ["price"] = content.select("//p/span/span[@class='l2']/span/text()").extract()[0]
