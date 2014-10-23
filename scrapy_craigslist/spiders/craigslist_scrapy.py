@@ -32,7 +32,7 @@ class MySpider(CrawlSpider):
             item ["location"] = content.select("//p/span/span[@class='l2']/span[@class='pnr']/small/text()").extract()[0]
             # print ('**parse-items_1:', item["title"])
             items.append(item)
-        return set(items)
+        return items
 
     # def parse_items_2(self, response):
     #     hxs = HtmlXPathSelector(response)
