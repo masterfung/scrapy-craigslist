@@ -19,11 +19,14 @@ class MySpider(CrawlSpider):
         items = []
         hxs = HtmlXPathSelector(response)
         print response.url
-        titles = hxs.select("//div")
-        for title in titles:
+        contents = hxs.select("//div[@class='content']/*")
+        print contents
+        for content in contents:
             item = ScrapyCraigslistItem()
-            item ["title"] = title.select("//li/a/text()").extract()
-            item ["link"] = title.select("//li/a/@href").extract()
+            item ["title"] = content.select("//p/span/span/a/text()").extract()
+            item ["url"] = content.select("//p/a/@href").extract()
+            item ["post_date"] = content.select("//p/span/span/time/text()").extract()
+            item ["post_date_specific"] = content.select("//p/span/span/time/@datetime").extract()
             print ('**parse-items_1:', item["title"])
             items.append(item)
         return items
