@@ -22,16 +22,17 @@ class MySpider(CrawlSpider):
         contents = hxs.select("//div[@class='content']/*")
         for content in contents:
             item = ScrapyCraigslistItem()
-            # item ["title"] = content.select("//p/span/span/a/text()").extract()[0]
-            # item ["ad_url"] = content.select("//p/a/@href").extract()[0]
-            # item ["img_url"] = content.select("//p/a/img/@src").extract()
-            # item ["post_date"] = content.select("//p/span/span/time/text()").extract()
-            # item ["post_date_specific"] = content.select("//p/span/span/time/@datetime").extract()
-            # item ["price"] = content.select("//p/span/span[@class='l2']/span/text()").extract()
-            # item ["location"] = content.select("//p/span/span[@class='l2']/span[@class='pnr']/small/text()").extract()
+            item ["title"] = content.select("//p/span/span/a/text()").extract()[0]
+            item ["ad_url"] = content.select("//p/a/@href").extract()[0]
+            # item ["img_url"] = content.select("(//p/a[@class='i'])").extract()[0] BAAAD
+            item ["post_date"] = content.select("//p/span/span/time/text()").extract()[0]
+            item ["post_date_specific"] = content.select("//p/span/span/time/@datetime").extract()[0]
+            item ["price"] = content.select("//p/span/span[@class='l2']/span/text()").extract()[0]
+            item ["room_details"] = content.select("//p/span/span[@class='l2']/text()").extract()[0].strip().replace('/', '')
+            item ["location"] = content.select("//p/span/span[@class='l2']/span[@class='pnr']/small/text()").extract()[0]
             # print ('**parse-items_1:', item["title"])
             items.append(item)
-        return items
+        return set(items)
 
     # def parse_items_2(self, response):
     #     hxs = HtmlXPathSelector(response)
