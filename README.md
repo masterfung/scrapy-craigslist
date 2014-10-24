@@ -26,5 +26,22 @@ You will need:
 
 If you need to change the city on the project to harvest 
 a different city, please reference [this link](https://sites.google.com/site/clsiteinfo/city-site-code-sort)
-for more information. Once you change that component, you should
-still be able to obtain the data from the city of interest.
+for more information. Once you change that component, you would
+ be able to obtain the data from the city of interest.
+ 
+Here are the steps to take to modify the the returning city data of interests:
+1. Look into the spiders folder and click on the craigslist_scrapy.py
+2. Click on the city codes and replace link with the city of your interest. 
+There are three areas this appears.
+3. Run the code and use this command: scrapy crawl craigslist -o FILENAME.json
+
+NOTE: This may take awhile, depends on how many listings are on Craigslist
+and how many parameters you selected.
+
+Outputted JSON files should be on the same level as the README.md file.
+
+If there are any issues or request, please let me know. I am happy to help.
+All the feedback are welcomed. Let us learn and build things together!
+
+Happy Scraping!
+

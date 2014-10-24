@@ -15,7 +15,7 @@ class MySpider(CrawlSpider):
 
     rules = (
         Rule(SgmlLinkExtractor(allow=(r'sfbay.craigslist.org/search/')), callback="parse_items_1", follow= True),
-        Rule(SgmlLinkExtractor(allow=("search/apa?s=d00&")), callback="parse_items_2", follow= True),
+        # Rule(SgmlLinkExtractor(allow=("search/apa?s=d00&")), callback="parse_items_2", follow= True),
         )
 
     def parse_items_1(self, response):
