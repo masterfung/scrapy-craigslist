@@ -7,14 +7,24 @@ from scrapy_craigslist.items import ScrapyCraigslistItem
 
 class MySpider(CrawlSpider):
     """
+    This CrawlSpider will look into the specific city and pull out content for
+    Title, Ad's URL, Post Date, Post Date Specific (i.e. datetime), Price,
+    Room Details, and Locations. Please reference https://sites.google.com/site/clsiteinfo/city-site-code-sort
+    for more on city codes and link.
+
+    If you need to change the city code, please do so at the three locations below:
+    allowed domains, start urls, and rules.
+
+    Feel free to change the name of the spider to be more specific.
 
     """
     name = "craigslist"
     allowed_domains = ["sfbay.craigslist.org"]
-    start_urls = ["http://sfbay.craigslist.org/search/apa?"]
+    start_urls = ["http://sfbay.craigslist.org/search/apa?#grid"]
 
     rules = (
-        Rule(SgmlLinkExtractor(allow=(r'sfbay.craigslist.org/search/')), callback="parse_items_1", follow= True),
+        Rule(SgmlLinkExtractor(allow=(r'sfbay.craigslist.org/search')), callback="parse_items_1", follow= True,
+             ),
         # Rule(SgmlLinkExtractor(allow=("search/apa?s=d00&")), callback="parse_items_2", follow= True),
         )
 
@@ -30,12 +40,12 @@ class MySpider(CrawlSpider):
             item = ScrapyCraigslistItem()
             item ["title"] = content.select("//p/span/span/a/text()").extract()[0]
             item ["ad_url"] = content.select("//p/a/@href").extract()[0]
-            # item ["img_url"] = content.select("(//p/a[@class='i'])").extract()[0] # BAAAD
-            item ["post_date"] = content.select("//p/span/span/time/text()").extract()[0]
-            item ["post_date_specific"] = content.select("//p/span/span/time/@datetime").extract()[0]
-            item ["price"] = content.select("//p/span/span[@class='l2']/span/text()").extract()[0]
-            item ["room_details"] = content.select("//p/span/span[@class='l2']/text()").extract()[0].strip().replace('/', '')
-            item ["location"] = content.select("//p/span/span[@class='l2']/span[@class='pnr']/small/text()").extract()[0]
+            # item ["img_url"] = content.select("(//img//@src)").extract() # BAAAD
+            # item ["post_date"] = content.select("//p/span/span/time/text()").extract()[0]
+            # item ["post_date_specific"] = content.select("//p/span/span/time/@datetime").extract()[0]
+            # item ["price"] = content.select("//p/span/span[@class='l2']/span/text()").extract()[0]
+            # item ["room_details"] = content.select("//p/span/span[@class='l2']/text()").extract()[0].strip().replace('/', '')
+            # item ["location"] = content.select("//p/span/span[@class='l2']/span[@class='pnr']/small/text()").extract()[0]
             # print ('**parse-items_1:', item["title"])
             items.append(item)
         return items

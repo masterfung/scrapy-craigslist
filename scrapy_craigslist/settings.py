@@ -13,7 +13,12 @@ BOT_NAME = 'scrapy_craigslist'
 SPIDER_MODULES = ['scrapy_craigslist.spiders']
 NEWSPIDER_MODULE = 'scrapy_craigslist.spiders'
 
-# USER_AGENT =
+# DUPEFILTER_DEBUG = True
+
+# DUPEFILTER_CLASS = 'scrapy_craigslist.filters.NoDuplicateUrl'
+
+USER_AGENT = "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) " \
+             "AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.639.0 Safari/534.16"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'scrapy_craigslist (+http://www.yourdomain.com)'

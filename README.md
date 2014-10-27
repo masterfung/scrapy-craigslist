@@ -45,3 +45,10 @@ All the feedback are welcomed. Let us learn and build things together!
 
 Happy Scraping!
 
+## User Agent
+
+Visit [this link] (http://api.useragent.io/) to obtain newly generated user agent
+to run your this Scrapy. You can change the User Agent in the Settings.py
+
+The link was a project by the wonderful [Randall Degges] (https://github.com/rdegges).
+He is awesome!!
