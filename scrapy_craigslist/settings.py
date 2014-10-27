@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = 'scrapy_craigslist.spiders'
 # DUPEFILTER_CLASS = 'scrapy_craigslist.filters.NoDuplicateUrl'
 
 ITEM_PIPELINES = {
-    'scrapy_craigslist.pipelines.DuplicatesPipeline': 300,
+    'scrapy_craigslist.pipelines.DuplicatesPipeline': 100,
 
 }
 

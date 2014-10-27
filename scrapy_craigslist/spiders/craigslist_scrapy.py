@@ -39,7 +39,8 @@ class MySpider(CrawlSpider):
         for content in contents:
             item = ScrapyCraigslistItem()
             item ["title"] = content.xpath("//p/span/span/a/text()").extract()[0]
-            item ["ad_url"] = content.xpath("//p/a/@href").extract()[0]
+            k = content.xpath("//p/a/@href").extract()[0]
+            item ['ad_url'] = 'http://sfbay.craigslist.org{}'.format(''.join(k))
             # item ["img_url"] = content.select("(//img//@src)").extract() # BAAAD
             item ["post_date"] = content.xpath("//p/span/span/time/text()").extract()[0]
             item ["post_date_specific"] = content.xpath("//p/span/span/time/@datetime").extract()[0]

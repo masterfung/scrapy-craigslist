@@ -7,9 +7,9 @@
 
 from scrapy.exceptions import DropItem
 
-class ScrapyCraigslistPipeline(object):
-    def process_item(self, item, spider):
-        return item
+# class ScrapyCraigslistPipeline(object):
+#     def process_item(self, item, spider):
+#         return item
 
 
 class DuplicatesPipeline(object):
@@ -18,8 +18,8 @@ class DuplicatesPipeline(object):
         self.titles_seen = set()
 
     def process_item(self, item, spider):
-        if item['ad_url'] in self.titles_seen:
+        if item['title'] in self.titles_seen:
             raise DropItem("Duplicate item found: %s" % item)
         else:
-            self.titles_seen.add(item['ad_url'])
+            self.titles_seen.add(item['title'])
             return item
