@@ -1,6 +1,7 @@
 __author__ = 'htm'
 
 from scrapy.contrib.linkextractors import LinkExtractor
+from scrapy.contrib.linkextractors.lxmlhtml import LxmlLinkExtractor
 from scrapy.contrib.spiders import Rule, CrawlSpider
 from scrapy.selector import Selector
 from scrapy_craigslist.items import ScrapyCraigslistItem
@@ -23,24 +24,43 @@ class MySpider(CrawlSpider):
     allowed_domains = ['sfbay.craigslist.org']
     start_urls = ['http://sfbay.craigslist.org/search/apa?']
 
-    rules = (
-        # Scrape all pages of results, not just the first page.
-        Rule(LinkExtractor(
-            allow = (r'.*/search/apa\?s\=\d+.*'),
-            deny = (r'.*format\=rss.*')
-        ), follow=True),
+    # rules = (
+    #     # Scrape all pages of results, not just the first page.
+    #     Rule(LinkExtractor(
+    #         allow = (r'.*/search/apa\?s\=\d+.*'),
+    #         deny = (r'.*format\=rss.*')
+    #     ), callback='parse_items_1', follow=True),
+    #
+    #     # Extract all data from each results page.
+    #     Rule(LinkExtractor(allow=(r'.*/apa/.*\.html$')), callback='parse_items_1'),
+    # )
 
-        # Extract all data from each results page.
-        Rule(LinkExtractor(allow=(r'.*/apa/.*\.html$')), callback='parse_items_1'),
-    )
+    rules = (
+        Rule(LxmlLinkExtractor(
+            allow=(r'sfbay.craigslist.org/.*'),
+            # allow=(r'.*/search/apa\?s\=\d+.*'),
+            deny = (r'.*format\=rss.*')
+        ),
+            callback="parse_items_1",
+            follow= True,
+             ),
+        # Rule(LxmlLinkExtractor(allow=("search/apa?s=d00&")), callback="parse_items_2", follow= True),
+        )
+
+
+# allow=(r'sfbay.craigslist.org/search')
 
     def parse_items_1(self, response):
         """
+        This function takes teh content from contents and map them according to the
+        items from items.py. If the key exists in content, then Scrapy will aggregate
+        the rest of the items and combine them.
 
+        Each content will have "[0]" to indicate the first listing from the array.
         """
         items = []
         hxs = Selector(response)
-        print response.url
+        # print response.url
         contents = hxs.xpath("//div[@class='content']/*")
         for content in contents:
             item = ScrapyCraigslistItem()
@@ -52,7 +72,7 @@ class MySpider(CrawlSpider):
             item ["post_date_specific"] = content.xpath("//p/span/span/time/@datetime").extract()[0]
             item ["price"] = content.xpath("//p/span/span[@class='l2']/span/text()").extract()[0]
             item ["room_details"] = content.xpath("//p/span/span[@class='l2']/text()").extract()[0].strip().replace('/', '')
-            item ["location"] = content.xpath("//p/span/span[@class='l2']/span[@class='pnr']/small/text()").extract()[0]
+            item ["location"] = content.xpath("//p/span/span[@class='l2']/span[@class='pnr']/small/text()").extract()[0].strip()
             # print ('**parse-items_1:', item["title"])
             items.append(item)
         return items

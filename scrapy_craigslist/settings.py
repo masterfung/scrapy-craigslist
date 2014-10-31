@@ -18,12 +18,11 @@ NEWSPIDER_MODULE = 'scrapy_craigslist.spiders'
 # DUPEFILTER_CLASS = 'scrapy_craigslist.filters.NoDuplicateUrl'
 
 ITEM_PIPELINES = {
-    'scrapy_craigslist.pipelines.DuplicatesPipeline': 100,
+    'scrapy_craigslist.pipelines.DuplicatesPipeline': 10,
 
 }
 
-USER_AGENT = "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) " \
-             "AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.639.0 Safari/534.16"
+USER_AGENT = "Mozilla/5.0 (Windows NT 5.1; rv:12.2.1) Gecko/20120616 Firefox/12.2.1 PaleMoon/12.2.1"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'scrapy_craigslist (+http://www.yourdomain.com)'
