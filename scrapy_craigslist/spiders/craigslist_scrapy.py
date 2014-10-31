@@ -1,9 +1,10 @@
 __author__ = 'htm'
 
-from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
+from scrapy.contrib.linkextractors import LinkExtractor
 from scrapy.contrib.spiders import Rule, CrawlSpider
 from scrapy.selector import Selector
 from scrapy_craigslist.items import ScrapyCraigslistItem
+
 
 class MySpider(CrawlSpider):
     """
@@ -18,15 +19,20 @@ class MySpider(CrawlSpider):
     Feel free to change the name of the spider to be more specific.
 
     """
-    name = "craigslist"
-    allowed_domains = ["sfbay.craigslist.org"]
-    start_urls = ["http://sfbay.craigslist.org/search/apa?"]
+    name = 'craigslist'
+    allowed_domains = ['sfbay.craigslist.org']
+    start_urls = ['http://sfbay.craigslist.org/search/apa?']
 
     rules = (
-        Rule(SgmlLinkExtractor(allow=(r'sfbay.craigslist.org/search/')), callback="parse_items_1", follow= True,
-             ),
-        # Rule(SgmlLinkExtractor(allow=("search/apa?s=d00&")), callback="parse_items_2", follow= True),
-        )
+        # Scrape all pages of results, not just the first page.
+        Rule(LinkExtractor(
+            allow = (r'.*/search/apa\?s\=\d+.*'),
+            deny = (r'.*format\=rss.*')
+        ), follow=True),
+
+        # Extract all data from each results page.
+        Rule(LinkExtractor(allow=(r'.*/apa/.*\.html$')), callback='parse_items_1'),
+    )
 
     def parse_items_1(self, response):
         """
