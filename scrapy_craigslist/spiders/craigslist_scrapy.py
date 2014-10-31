@@ -16,7 +16,7 @@ class MySpider(CrawlSpider):
     If you need to change the city code, please do so at the three locations below:
     allowed domains, start urls, and rules.
 
-    Feel free to change the name of the spider to be more specific.
+    Feel free to change the name of the spider to something more specific.
 
     """
     name = 'craigslist'
@@ -40,7 +40,7 @@ class MySpider(CrawlSpider):
         """
         items = []
         hxs = Selector(response)
-        # print response.url
+        print response.url
         contents = hxs.xpath("//div[@class='content']/*")
         for content in contents:
             item = ScrapyCraigslistItem()
@@ -56,15 +56,3 @@ class MySpider(CrawlSpider):
             # print ('**parse-items_1:', item["title"])
             items.append(item)
         return items
-
-    # def parse_items_2(self, response):
-    #     hxs = HtmlXPathSelector(response)
-    #     titles = hxs.select("//p")
-    #     items = []
-    #     for title in titles:
-    #         item = CraigslistSampleItem() #  need to change
-    #         item ["title"] = title.select("a/text()").extract()
-    #         item ["link"] = title.select("a/@href").extract()
-    #         print ('**parse_items_2:', item["title"], item["link"])
-    #         items.append(item)
-    #     return items

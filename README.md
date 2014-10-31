@@ -2,7 +2,7 @@
 
 A project by: Tsung Hung [@masterfung](twitter.com/masterfung)
 
-Scrapy is the open-source software that powers
+Scrapy is the open-source web scrapper and it is used to power
 this library. Please visit [this link](http://scrapy.org/)
 for more information.
 
@@ -52,3 +52,8 @@ to run your this Scrapy. You can change the User Agent in the Settings.py
 
 The link was a project by the wonderful [Randall Degges] (https://github.com/rdegges).
 He is awesome!!
+
+
+## Special Thanks
+
+I want to thank [Randall Degges] (https://github.com/rdegges) for his support.
