@@ -37,7 +37,7 @@ class MySpider(CrawlSpider):
 
     rules = (
         Rule(LxmlLinkExtractor(
-            allow=(r'sfbay.craigslist.org/.*'),
+            allow=(r'sfbay.craigslist.org/search/apa.*'),
             # allow=(r'.*/search/apa\?s\=\d+.*'),
             deny = (r'.*format\=rss.*')
         ),
@@ -58,21 +58,19 @@ class MySpider(CrawlSpider):
 
         Each content will have "[0]" to indicate the first listing from the array.
         """
-        self.logger.info('Hi, this is an item page! %s', response.url)
+        self.logger.info('You are now crawling: %s', response.url)
         items = []
         hxs = Selector(response)
         # print response.url
-        contents = hxs.xpath("//div[@class='content']/*")
+        contents = hxs.xpath("//div[@class='rows']/*")
         for content in contents:
             item = ScrapyCraigslistItem()
             item ["title"] = content.xpath("//p/span/span/a/span/text()").extract()[0]
             k = content.xpath("//p/a/@href").extract()[0]
             item ['ad_url'] = 'https://sfbay.craigslist.org{}'.format(''.join(k))
-            # item ["img_url"] = content.select("(//img//@src)").extract() # BAAAD
             item ["post_date"] = content.xpath("//p/span/span/time/text()").extract()[0]
             item ["post_date_specific"] = content.xpath("//p/span/span/time/@datetime").extract()[0]
             item ["price"] = content.xpath("//p/span/span[@class='l2']/span/text()").extract()[0]
-            item ["room_details"] = content.xpath("//p/span/span[@class='l2']/text()").extract()[0].strip().replace('/', '')
             item ["location"] = content.xpath("//p/span/span[@class='l2']/span[@class='pnr']/small/text()").extract()[0].strip()
             # print ('**parse-items_1:', item["title"])
             items.append(item)

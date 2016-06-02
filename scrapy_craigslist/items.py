@@ -15,5 +15,3 @@ class ScrapyCraigslistItem(scrapy.Item):
     price = scrapy.Field()
     location = scrapy.Field()
     ad_url = scrapy.Field()
-    img_url = scrapy.Field()
-    room_details = scrapy.Field()
