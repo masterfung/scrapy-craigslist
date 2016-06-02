@@ -7,11 +7,6 @@
 
 from scrapy.exceptions import DropItem
 
-# class ScrapyCraigslistPipeline(object):
-#     def process_item(self, item, spider):
-#         return item
-
-
 class DuplicatesPipeline(object):
 
     def __init__(self):
