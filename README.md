@@ -21,7 +21,7 @@ You will need:
 
 * Python 2.x or 3.x
 * pip
-* Scrapy
+* Scrapy (`pip install scrapy`)
 
 ## Craigslist City Codes:
 
@@ -36,10 +36,10 @@ Here are the steps to take to modify the the returning city data of interests:
 There are three areas this appears.
 3. Run the code and use this command: `scrapy crawl craigslist -o FILENAME.json`
 
-NOTE: This may take awhile, depends on how many listings are on Craigslist
+**NOTE**: This may take awhile, depends on how many listings are on Craigslist
 and how many parameters you selected.
 
-Outputted JSON files should be on the same level as the README.md file.
+Outputted JSON files should be saved on the applicational level of this project.
 
 If there are any issues or request, please let me know. I am happy to help.
 All the feedback are welcomed. Let us learn and build things together!
@@ -49,7 +49,7 @@ Happy Scraping!
 ## User Agent
 
 Visit [this link] (http://api.useragent.io/) to obtain newly generated user agent
-to run your this Scrapy. You can change the User Agent in the Settings.py
+to run your this Scrapy. You can change the User Agent in the `settings.py` file.
 
 The link was a project by the wonderful [Randall Degges] (https://github.com/rdegges).
 He is awesome!!
@@ -57,9 +57,4 @@ He is awesome!!
 
 ## Others
 
-Bewarn of IP ban from Craigslist.
-
-
-## Special Thanks
-
-I want to thank [Randall Degges] (https://github.com/rdegges) for his support.
+Beware of IP ban from Craigslist.
