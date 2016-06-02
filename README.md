@@ -1,4 +1,5 @@
-## Scrapy for Craigslists Apartments
+Scrapy for Craigslists Apartments
+===========
 
 A project by: Tsung Hung [@masterfung](twitter.com/masterfung)
 
