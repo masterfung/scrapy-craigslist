@@ -6,14 +6,14 @@ Scrapy is the open-source web scrapper and it is used to power
 this library. Please visit [this link](http://scrapy.org/)
 for more information.
 
-## Purpose: 
+## Purpose:
 The purpose of Scrapy Craigslist (CL) is
 to obtain useful CL apartment data for application-
-specific data analysis and representation. 
+specific data analysis and representation.
 
-A model example that utilizes the data from this project is 
+A model example that utilizes the data from this project is
 located [here](https://github.com/masterfung/scrapilious). This
-project is a Django-powered project. 
+project is a Django-powered project.
 
 ## Requirements:
 You will need:
@@ -24,16 +24,16 @@ You will need:
 
 ## Craigslist City Codes:
 
-If you need to change the city on the project to harvest 
+If you need to change the city on the project to harvest
 a different city, please reference [this link](https://sites.google.com/site/clsiteinfo/city-site-code-sort)
 for more information. Once you change that component, you would
  be able to obtain the data from the city of interest.
- 
+
 Here are the steps to take to modify the the returning city data of interests:
-1. Look into the spiders folder and click on the craigslist_scrapy.py
-2. Click on the city codes and replace link with the city of your interest. 
+1. Look into the spiders folder and click on the `craigslist_scrapy.py`
+2. Click on the city codes and replace link with the city of your interest.
 There are three areas this appears.
-3. Run the code and use this command: scrapy crawl craigslist -o FILENAME.json
+3. Run the code and use this command: `scrapy crawl craigslist -o FILENAME.json`
 
 NOTE: This may take awhile, depends on how many listings are on Craigslist
 and how many parameters you selected.
