@@ -23,6 +23,10 @@ You will need:
 * pip
 * Scrapy (`pip install scrapy`)
 
+## Project:
+
+Clone the project with `git clone git@github.com:masterfung/scrapy-craigslist.git`
+
 ## Craigslist City Codes:
 
 If you need to change the city on the project to harvest
@@ -30,11 +34,14 @@ a different city, please reference [this link](https://sites.google.com/site/cls
 for more information. Once you change that component, you would
  be able to obtain the data from the city of interest.
 
+## Running the Project
+
 Here are the steps to take to modify the the returning city data of interests:
-1. Look into the spiders folder and click on the `craigslist_scrapy.py`
-2. Click on the city codes and replace link with the city of your interest.
+
+* Look into the spiders folder and click on the `craigslist_scrapy.py`
+* Click on the city codes and replace link with the city of your interest.
 There are three areas this appears.
-3. Run the code and use this command: `scrapy crawl craigslist -o FILENAME.json`
+* Run the code and use this command: `scrapy crawl craigslist -o FILENAME.json`
 
 **NOTE**: This may take awhile, depends on how many listings are on Craigslist
 and how many parameters you selected.
