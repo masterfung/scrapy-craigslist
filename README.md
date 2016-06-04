@@ -3,9 +3,8 @@ Scrapy for Craigslists Apartments
 
 A project by: Tsung Hung [@masterfung](twitter.com/masterfung)
 
-Scrapy is the open-source web scrapper and it is used to power
-this library. Please visit [this link](http://scrapy.org/)
-for more information.
+Scrapy is the open-source web scrapper (in Python) and it is used to power this library. Please visit [this link](http://scrapy.org/)
+for more information if you are not familiar with it.
 
 ## Purpose:
 The purpose of Scrapy Craigslist (CL) is
@@ -15,6 +14,9 @@ specific data analysis and representation.
 A model example that utilizes the data from this project is
 located [here](https://github.com/masterfung/scrapilious). This
 project is a Django-powered project.
+
+The code inside utilizes San Francisco as a model city for CL searches
+but you can easily change the link to one of your interests.
 
 ## Requirements:
 You will need:
