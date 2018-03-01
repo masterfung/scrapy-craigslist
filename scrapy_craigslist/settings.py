@@ -22,6 +22,9 @@ ITEM_PIPELINES = {
 
 }
 
+FEED_FORMAT = "json"
+FEED_URI = "output.csv"
+
 USER_AGENT = "Mozilla/5.0 (Windows NT 5.1; rv:12.2.1) Gecko/20120616 Firefox/12.2.1 PaleMoon/12.2.1"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
